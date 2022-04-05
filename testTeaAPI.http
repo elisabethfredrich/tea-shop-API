@@ -1,0 +1,31 @@
+
+
+// create customer
+POST http://localhost:3000/customers HTTP/1.1
+content-type: application/json
+
+{"customerId": 3, 
+"customerName": "Jane Doe", 
+"customerEmail": "janedoe@hotmail.com"}
+###
+
+// get customer by id
+GET http://localhost:3000/customers/1 HTTP/1.1
+
+###
+
+// get all products
+GET http://localhost:3000/products HTTP/1.1
+###
+
+//get product by id
+GET http://localhost:3000/products/1 HTTP/1.1
+###
+
+//get all product categories
+GET http://localhost:3000/productCategories HTTP/1.1
+###
+
+//get all products from a specific category
+GET http://localhost:3000/products/categories/green HTTP/1.1
+###
