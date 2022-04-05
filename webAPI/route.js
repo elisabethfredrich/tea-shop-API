@@ -17,6 +17,6 @@ router.get("/products/categories/:category", getAllProductsByCategory);
 
 router.post("/baskets", postBasketForCustomer);
 router.post("/baskets/:id/products", postProductInBasketForCustomer);
-router.delete("baskets/:id/products/:id", deleteProductInBasketForCustomer);
+router.delete("/baskets/:customerId/products/:productId", deleteProductInBasketForCustomer);
 router.get("/baskets/:id", getBasketForCustomer)
 

@@ -1,7 +1,7 @@
 import * as fs from "fs/promises";
 const DATA_FILE = "./webAPI/data.json";
 
-// return all customers from file
+// return all data from file
 export async function getAll() {
   try {
     let dataTxt = await fs.readFile(DATA_FILE);
@@ -10,7 +10,7 @@ export async function getAll() {
   } catch (err) {
     if (err.code === "ENOENT") {
       // file does not exits
-      await save([]); // create a new file with ampty array
+      await save([]); // create a new file with empty array
       return []; // return empty array
     } // // cannot handle this exception, so rethrow
     else throw err;
@@ -55,7 +55,7 @@ async function saveBasketForCustomers(newBaskets = []) {
 }
 
 
-// test function for customer ID
+// test functions 
 function findCustomer(customerArray, Id) {
   return customerArray.findIndex(
     (currCustomer) => currCustomer.customerId === Id
@@ -68,14 +68,18 @@ function findProduct(productArray, Id) {
     );
   }
 
-  // Test function for if a specific user already are stored in the basket array 
-// This doesn't work!!
 function findCustomerBasket(basketArray, Id) {
   return basketArray.findIndex(
     (currBasket) => currBasket.customerId === Id
   );
 }
+
+function findProductsByCategory(productArray, category) {
+  let products = productArray.filter(product => product.categories.includes(category));
+  return products;
+  }
  
+// getter functions
 export async function getCustomerByID(customerId) {
   let customerArray = await getAllCustomers();
   let index = findCustomer(customerArray, customerId);
@@ -97,10 +101,12 @@ export async function getProductByID(productId) {
     let customerBasketArray = await getAllBaskets();
     let index = findCustomerBasket(customerBasketArray, customerId);
     if (index === -1)
-      throw new Error(`Customer with ID:${productId} doesn't have a basket`);
-    else return customerBasketArray[index];
+      throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
+    else return customerBasketArray[index].products;
   } 
 
+
+//functions called inside controller functions
 export async function addCustomer(newCustomer) {
     let customerArray = await getAllCustomers();
     if (findCustomer(customerArray, newCustomer.customerId) !== -1 )
@@ -111,10 +117,6 @@ export async function addCustomer(newCustomer) {
         await saveCustomers(customerArray);
     }
 
-function findProductsByCategory(productArray, category) {
-  let products = productArray.filter(product => product.categories.includes(category));
-  return products;
-  }
 
   export async function getProductsByCategory(category) {
       let productArray = await getAllProducts();
@@ -137,24 +139,41 @@ export async function addBasketForCustomer(basket) {
 
 
   // create a product into a specific customers basket 
-  export async function createProductInBasketForCustomer (customerId, productId){
-    let basketArray = await getAllBaskets();
-    let index = findCustomerBasket(basketArray, customerId);
+  export async function createProductInBasketForCustomer (customerId, newProduct){
+    let customerBasketArray = await getAllBaskets();
+    let productArray;
+    let index = findCustomerBasket(customerBasketArray, customerId);
     if (index === -1)
-    throw new Error(`Customer with Id:${customerId} doesn't exist`);
-    else basketArray.push(productId);
+      throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
+    else productArray = customerBasketArray[index].products;
+    productArray.push(newProduct);
     await saveBasketForCustomers(customerBasketArray);
   }
 
+    // Get all product information of items in basket of specific customer
+    export async function getBasketAllInfo(customerId) {
+      let basket = await getBasket(customerId);
+      for(let i = 0; i<basket.length; i++){
+        let product = await getProductByID(basket[i].productId);
+        basket[i] = product};
+      return basket;
+    } 
 
-  // Delete a specific item in a specific customers basket 
-  export async function deleteItemFromBasket(customerId, productId){
-    let basketArray = await getAllBaskets();
-    let index = findCustomerBasket(basketArray, customerId);
-    if (index === -1)
-    throw new Error(`Customer with Id:${customerId} doesn't exist`);
-    else basketArray[index].remove();
-    await saveBasketForCustomers(basketArray);
+
+   // Delete a specific item in a specific customers basket 
+   export async function deleteProductFromBasket(customerId, productId){
+    let customerBasketArray = await getAllBaskets();
+    let basket;
+    let basketIndex = findCustomerBasket(customerBasketArray, customerId);
+    if (basketIndex === -1)
+      throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
+    else basket = customerBasketArray[basketIndex].products;
+
+    let productIndex = findProduct(basket, productId);
+    if (productIndex === -1)
+    throw new Error(`Product with Id:${productId} is not in the customer's basket`);
+    else basket.splice(productIndex,1);
+    await saveBasketForCustomers(customerBasketArray);
 
   }
     

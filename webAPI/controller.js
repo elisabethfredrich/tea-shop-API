@@ -13,6 +13,7 @@ export async function postCustomer(req, res) {
       res.status(400).send(error.message);
     }
   }
+  
 //GET
   export async function getCustomer (req, res) {
     try {
@@ -90,9 +91,9 @@ export async function postBasketForCustomer(req, res) {
 //POST
 export async function postProductInBasketForCustomer(req, res) {
   try {
-    let idCustomer = parseInt(req.params.id)
-    let idProduct = parseInt(req.params.id)
-    await model.createProductInBasketForCustomer(idCustomer, idProduct);
+    let customerId = parseInt(req.params.id)
+    let newProduct = req.body;
+    await model.createProductInBasketForCustomer(customerId, newProduct);
     res.end()
   } catch (error) {
     // res.statusMessage=
@@ -104,7 +105,7 @@ export async function postProductInBasketForCustomer(req, res) {
  export async function getBasketForCustomer (req, res) {
   try {
     let id = parseInt(req.params.id)
-    let basket = await model.getBasket(id);
+    let basket = await model.getBasketAllInfo(id);
     res.json(basket);
   } catch (error) {
     // res.statusMessage=
@@ -115,26 +116,15 @@ export async function postProductInBasketForCustomer(req, res) {
 //DELETE
 export async function deleteProductInBasketForCustomer (req, res) {
   try {
-    let id = parseInt(req.params.id)
-    let basket = await model.deleteItemFromBasket(id);
+    let customerId = parseInt(req.params.customerId)
+    let productId = parseInt(req.params.productId)
+    await model.deleteProductFromBasket(customerId, productId);
     res.end()
   } catch (error) {
     // res.statusMessage=
     res.status(400).send(error.message);
   }
 } 
-
-export async function deleteProductInBasket (req,res){
-  try {
-    let idCustomer = parseInt(req.params.id)
-    let idProduct = parseInt(req.params.id)
-    let product = await model.deleteItemFromBasket(idCustomer, idProduct);
-    res.json(product);
-  } catch (error) {
-    // res.statusMessage=
-    res.status(400).send(error.message);
-  }
-}
   
 
   
