@@ -38,13 +38,21 @@ export async function getAllCustomers() {
     return data[3].baskets;
   }
 
-
+//save all customers (after adding new one) to file
 async function saveCustomers(newCustomers = []) {
     let data = await getAll();
     data[0].customers = newCustomers;
     let dataTxt = JSON.stringify(data);
     await fs.writeFile(DATA_FILE, dataTxt);
   }
+
+  //save all baskets (after adding new one) to file
+async function saveBasketForCustomers(newBaskets = []) {
+  let data = await getAll();
+  data[3].baskets = newBaskets;
+  let dataTxt = JSON.stringify(data);
+  await fs.writeFile(DATA_FILE, dataTxt);
+}
 
 
 // test function for customer ID
@@ -118,12 +126,12 @@ function findProductsByCategory(productArray, category) {
     }
 
     // create a new basket for a specific customer ID 
-export async function addBasketForCustomer(customer) {
+export async function addBasketForCustomer(basket) {
   let customerBasketArray = await getAllBaskets(); 
-  if (findCustomerBasket(customerBasketArray, customer) !== -1 )
-  throw new Error(`Customer with Id:${customer.customerId} already has a basket`);
+  if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
+  throw new Error(`Customer with Id:${basket.customerId} already has a basket`);
     // Should the basket array only contain the customerID or store all details about the customer? 
-      else customerBasketArray.push(customer);
+      else customerBasketArray.push(basket);
       await saveBasketForCustomers(customerBasketArray);
   }
 

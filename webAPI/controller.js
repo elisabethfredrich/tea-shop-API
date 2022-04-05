@@ -78,8 +78,8 @@ export async function getAllProducts(req, res) {
 //POST
 export async function postBasketForCustomer(req, res) {
   try {
-    let id = parseInt(req.params.id)
-    await model.addBasketForCustomer(id);
+    let newBasket = req.body;
+    await model.addBasketForCustomer(newBasket);
     res.end()
   } catch (error) {
     // res.statusMessage=
