@@ -1,6 +1,6 @@
 import express from "express";
 
-import {customerRouter} from "./webAPI/route.js";
+import {router} from "./webAPI/route.js";
 //import {productsRouter} from "./products/products.route.js";
 const app = express();
 const PORT = 3000;

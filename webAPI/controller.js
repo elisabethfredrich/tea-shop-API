@@ -79,7 +79,7 @@ export async function getAllProducts(req, res) {
 export async function postBasketForCustomer(req, res) {
   try {
     let id = parseInt(req.params.id)
-    await customerModel.addBasketForCustomer(id);
+    await model.addBasketForCustomer(id);
     res.end()
   } catch (error) {
     // res.statusMessage=
@@ -92,7 +92,7 @@ export async function postProductInBasketForCustomer(req, res) {
   try {
     let idCustomer = parseInt(req.params.id)
     let idProduct = parseInt(req.params.id)
-    await customerModel.createProductInBasketForCustomer(idCustomer, idProduct);
+    await model.createProductInBasketForCustomer(idCustomer, idProduct);
     res.end()
   } catch (error) {
     // res.statusMessage=
@@ -104,7 +104,7 @@ export async function postProductInBasketForCustomer(req, res) {
  export async function getBasketForCustomer (req, res) {
   try {
     let id = parseInt(req.params.id)
-    let basket = await customerModel.getBasket(id);
+    let basket = await model.getBasket(id);
     res.json(basket);
   } catch (error) {
     // res.statusMessage=
@@ -116,7 +116,7 @@ export async function postProductInBasketForCustomer(req, res) {
 export async function deleteProductInBasketForCustomer (req, res) {
   try {
     let id = parseInt(req.params.id)
-    let basket = await customerModel.deleteItemFromBasket(id);
+    let basket = await model.deleteItemFromBasket(id);
     res.end()
   } catch (error) {
     // res.statusMessage=
@@ -128,7 +128,7 @@ export async function deleteProductInBasket (req,res){
   try {
     let idCustomer = parseInt(req.params.id)
     let idProduct = parseInt(req.params.id)
-    let product = await customerModel.deleteItemFromBasket(idCustomer, idProduct);
+    let product = await model.deleteItemFromBasket(idCustomer, idProduct);
     res.json(product);
   } catch (error) {
     // res.statusMessage=
