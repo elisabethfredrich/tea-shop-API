@@ -1,10 +1,10 @@
 import * as fs from "fs/promises";
-const CUSTOMERS_FILE = "./webAPI/data.json";
+const DATA_FILE = "./webAPI/data.json";
 
-// return all customer from file
+// return all customers from file
 export async function getAll() {
   try {
-    let dataTxt = await fs.readFile(CUSTOMERS_FILE);
+    let dataTxt = await fs.readFile(DATA_FILE);
     let data = JSON.parse(dataTxt);
     return data;
   } catch (err) {
@@ -33,12 +33,17 @@ export async function getAllCustomers() {
     return data[2].productCategories;
   }
 
+  export async function getAllBaskets() {
+    let data = await getAll();
+    return data[3].baskets;
+  }
+
 
 async function saveCustomers(newCustomers = []) {
     let data = await getAll();
     data[0].customers = newCustomers;
     let dataTxt = JSON.stringify(data);
-    await fs.writeFile(CUSTOMERS_FILE, dataTxt);
+    await fs.writeFile(DATA_FILE, dataTxt);
   }
 
 
@@ -54,8 +59,15 @@ function findProduct(productArray, Id) {
       (currProduct) => currProduct.productId === Id
     );
   }
+
+  // Test function for if a specific user already are stored in the basket array 
+// This doesn't work!!
+function findCustomerBasket(basketArray, Id) {
+  return basketArray.findIndex(
+    (currBasket) => currBasket.customerId === Id
+  );
+}
  
-// get customer by ID
 export async function getCustomerByID(customerId) {
   let customerArray = await getAllCustomers();
   let index = findCustomer(customerArray, customerId);
@@ -72,8 +84,15 @@ export async function getProductByID(productId) {
     else return productArray[index];
   }
 
+  // Get basket by id for a specific customer 
+  export async function getBasket(customerId) {
+    let customerBasketArray = await getAllBaskets();
+    let index = findCustomerBasket(customerBasketArray, customerId);
+    if (index === -1)
+      throw new Error(`Customer with ID:${productId} doesn't have a basket`);
+    else return customerBasketArray[index];
+  } 
 
-// create a new customer
 export async function addCustomer(newCustomer) {
     let customerArray = await getAllCustomers();
     if (findCustomer(customerArray, newCustomer.customerId) !== -1 )
@@ -89,7 +108,7 @@ function findProductsByCategory(productArray, category) {
   return products;
   }
 
-    export async function getProductsByCategory(category) {
+  export async function getProductsByCategory(category) {
       let productArray = await getAllProducts();
       let productCategoryArray = findProductsByCategory(productArray, category);
       if(productCategoryArray.length === 0){
@@ -98,5 +117,36 @@ function findProductsByCategory(productArray, category) {
       else return  productCategoryArray;
     }
 
-    
+    // create a new basket for a specific customer ID 
+export async function addBasketForCustomer(customer) {
+  let customerBasketArray = await getAllBaskets(); 
+  if (findCustomerBasket(customerBasketArray, customer) !== -1 )
+  throw new Error(`Customer with Id:${customer.customerId} already has a basket`);
+    // Should the basket array only contain the customerID or store all details about the customer? 
+      else customerBasketArray.push(customer);
+      await saveBasketForCustomers(customerBasketArray);
+  }
+
+
+  // create a product into a specific customers basket 
+  export async function createProductInBasketForCustomer (customerId, productId){
+    let basketArray = await getAllBaskets();
+    let index = findCustomerBasket(basketArray, customerId);
+    if (index === -1)
+    throw new Error(`Customer with Id:${customerId} doesn't exist`);
+    else basketArray.push(productId);
+    await saveBasketForCustomers(customerBasketArray);
+  }
+
+
+  // Delete a specific item in a specific customers basket 
+  export async function deleteItemFromBasket(customerId, productId){
+    let basketArray = await getAllBaskets();
+    let index = findCustomerBasket(basketArray, customerId);
+    if (index === -1)
+    throw new Error(`Customer with Id:${customerId} doesn't exist`);
+    else basketArray[index].remove();
+    await saveBasketForCustomers(basketArray);
+
+  }
     

@@ -1,6 +1,6 @@
 import express from "express";
 
-import {customerRouter} from "./webAPI/customers.route.js";
+import {customerRouter} from "./webAPI/route.js";
 //import {productsRouter} from "./products/products.route.js";
 const app = express();
 const PORT = 3000;
@@ -8,12 +8,9 @@ const PORT = 3000;
 // This is a built-in middleware function in Express. It parses incoming requests with JSON payloads.
 app.use(express.json());
 
-// paths handled by quizzesRouter
-app.use(customerRouter)
+// paths handled by router
+app.use(router)
 
-// new addition!
-// paths handled by quizzesRouter
-//app.use(productsRouter)
 
 app.get("/", (req, res) => res.send("Server 3: Hello World!"));
 

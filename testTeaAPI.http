@@ -29,3 +29,29 @@ GET http://localhost:3000/productCategories HTTP/1.1
 //get all products from a specific category
 GET http://localhost:3000/products/categories/green HTTP/1.1
 ###
+
+// create basket for a specific user 
+POST http://localhost:3000/baskets HTTP/1.1
+content-type: application/json
+
+{"customerId": 3, 
+"products": []}
+
+###
+
+// create a specific product in a specific customers basket
+POST http://localhost:3000/baskets/3/products HTTP/1.1
+content-type: application/json
+
+{"productId": 1}
+
+###
+
+// delete specific product in a specific customer basket 
+DELETE http://localhost:3000/baskets/3/products/1 HTTP/1.1
+###
+
+// get content of basket for a specfic user
+GET http://localhost:3000/baskets/3 HTTP/1.1
+
+###
