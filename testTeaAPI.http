@@ -4,7 +4,7 @@
 POST http://localhost:3000/customers HTTP/1.1
 content-type: application/json
 
-{"customerId": 5, 
+{"customerId": 10, 
 "customerName": "Jane Doe", 
 "customerEmail": "janedoe@hotmail.com"}
 ###
@@ -34,8 +34,10 @@ GET http://localhost:3000/products/categories/green HTTP/1.1
 POST http://localhost:3000/baskets HTTP/1.1
 content-type: application/json
 
-{"customerId": 5, 
-"products": []}
+{"customerId": 6, "products": []}
+
+//test for unregistered customer
+//{"customerId": "", "products": []}
 
 ###
 
@@ -44,6 +46,12 @@ POST http://localhost:3000/baskets/4/products HTTP/1.1
 content-type: application/json
 
 {"productId": 3}
+
+// add a specific product in a specific customers basket (for unregistered customer)
+//POST http://localhost:3000/baskets/0/products HTTP/1.1
+//content-type: application/json
+
+//{"productId": 3}
 
 ###
 

@@ -88,6 +88,7 @@ export async function postBasketForCustomer(req, res) {
   }
 }
 
+
 //POST
 export async function postProductInBasketForCustomer(req, res) {
   try {
@@ -125,6 +126,7 @@ export async function deleteProductInBasketForCustomer (req, res) {
     res.status(400).send(error.message);
   }
 } 
+
   
 
   

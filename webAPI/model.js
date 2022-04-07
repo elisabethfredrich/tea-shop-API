@@ -137,8 +137,19 @@ export async function addBasketForCustomer(basket) {
       await saveBasketForCustomers(customerBasketArray);
   }
 
+  //if customer has no id (because not logged in), an id gets assigned which is current time stamp
+  export async function addBasketForCustomer2(basket) {
+    let customerBasketArray = await getAllBaskets(); 
+    if (basket.customerId === "")
+        basket.customerId = Date.now();
+    if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
+      throw new Error(`Customer with Id:${basket.customerId} already has a basket`);
+    else  customerBasketArray.push(basket);
+    await saveBasketForCustomers(customerBasketArray);
+    }
 
-  // create a product into a specific customers basket 
+
+  // adds a product to a specific customer's basket 
   export async function createProductInBasketForCustomer (customerId, newProduct){
     let customerBasketArray = await getAllBaskets();
     let productArray;
@@ -147,6 +158,21 @@ export async function addBasketForCustomer(basket) {
       throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
     else productArray = customerBasketArray[index].products;
     productArray.push(newProduct);
+    await saveBasketForCustomers(customerBasketArray);
+  }
+
+  // creates a basket if a non-registered customer doesn't have a basket yet (id = 0) and adds a product to a specific customer's basket
+  export async function createProductInBasketForCustomer2 (customerId, newProduct){
+    let customerBasketArray = await getAllBaskets();
+    let productArray;
+    if (customerId === 0){
+      let basket = {customerId: Date.now(), products: [newProduct]};
+      customerBasketArray.push(basket);
+    }
+    else {
+        let index = findCustomerBasket(customerBasketArray, customerId);
+        productArray = customerBasketArray[index].products;
+        productArray.push(newProduct);}
     await saveBasketForCustomers(customerBasketArray);
   }
 
@@ -176,4 +202,5 @@ export async function addBasketForCustomer(basket) {
     await saveBasketForCustomers(customerBasketArray);
 
   }
+
     
