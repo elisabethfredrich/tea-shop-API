@@ -4,9 +4,9 @@
 POST http://localhost:3000/customers HTTP/1.1
 content-type: application/json
 
-{"customerId": 3, 
-"customerName": "Jane Doe", 
-"customerEmail": "janedoe@hotmail.com"}
+{"customerId": 6, 
+"customerName": "Sinisa Neskovic", 
+"customerEmail": "sinn@itu.dk"}
 ###
 
 // get customer by id
@@ -28,4 +28,34 @@ GET http://localhost:3000/productCategories HTTP/1.1
 
 //get all products from a specific category
 GET http://localhost:3000/products/categories/green HTTP/1.1
+###
+
+// create basket for a specific user 
+POST http://localhost:3000/baskets HTTP/1.1
+content-type: application/json
+
+{"customerId": 6, "products": []}
+
+###
+
+// add a specific product in a specific customers basket
+POST http://localhost:3000/baskets/4/products HTTP/1.1
+content-type: application/json
+
+{"productId": 1}
+
+// add a specific product in a specific customers basket (for unregistered customer)
+//POST http://localhost:3000/baskets/0/products HTTP/1.1
+//content-type: application/json
+
+//{"productId": 3}
+
+###
+
+// get content of basket for a specfic user
+GET http://localhost:3000/baskets/4 HTTP/1.1
+
+###
+// delete specific product in a specific customer basket 
+DELETE http://localhost:3000/baskets/4/products/3 HTTP/1.1
 ###
