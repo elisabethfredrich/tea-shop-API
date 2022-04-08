@@ -4,9 +4,9 @@
 POST http://localhost:3000/customers HTTP/1.1
 content-type: application/json
 
-{"customerId": 10, 
-"customerName": "Jane Doe", 
-"customerEmail": "janedoe@hotmail.com"}
+{"customerId": 6, 
+"customerName": "Sinisa Neskovic", 
+"customerEmail": "sinn@itu.dk"}
 ###
 
 // get customer by id
@@ -36,16 +36,13 @@ content-type: application/json
 
 {"customerId": 6, "products": []}
 
-//test for unregistered customer
-//{"customerId": "", "products": []}
-
 ###
 
 // add a specific product in a specific customers basket
 POST http://localhost:3000/baskets/4/products HTTP/1.1
 content-type: application/json
 
-{"productId": 3}
+{"productId": 1}
 
 // add a specific product in a specific customers basket (for unregistered customer)
 //POST http://localhost:3000/baskets/0/products HTTP/1.1

@@ -1,1 +1,52 @@
-[{"customers":[{"customerId":1,"customerName":"Jane Doe","customerEmail":"janedoe@hotmail.com"},{"customerId":2,"customerName":"Jane Doe","customerEmail":"janedoe@hotmail.com"},{"customerId":4,"customerName":"Jane Doe","customerEmail":"janedoe@hotmail.com"},{"customerId":3,"customerName":"Jane Doe","customerEmail":"janedoe@hotmail.com"},{"customerId":5,"customerName":"Jane Doe","customerEmail":"janedoe@hotmail.com"},{"customerId":10,"customerName":"Jane Doe","customerEmail":"janedoe@hotmail.com"}]},{"products":[{"productId":1,"productName":"Sencha tea","categories":["green","conventional","30-50 DKK"],"price":"32 dkk","image":"/img/greenteas/sencha.jpg","description":"Sencha is a mild and soft green tea from China. It is often used in various green tea blends because it is mild and can therefore easily be combined with various ingredients such as fruits, berries and herbs."},{"productId":2,"productName":"Organic Matcha Tea","categories":["green","organic","30-50 DKK"],"price":"35 dkk","image":"/img/greenteas/matcha.png","description":"Matcha is a fine, green tea powder and is used for the traditional Japanese tea ceremony. Matcha is made from the finest top leaves of the plant and is rich on A-, E- and C vitamins, minerals and polyphenols. It is said that Matcha is even healthier than other teas because the whole tea leaves are used."},{"productId":3,"productName":"Organic Licorice tea","categories":["herbal","organic","30-50 DKK"],"price":"39 dkk","image":"/img/herbaltea/licorice.jpg","description":"This tea is a very tasty, pure herbal tea composed of lemon grass, peppermint, liquorice roots and apple pieces. It can be drunk both hot and cold and is excellent used as icetea on a hot summerday."}]},{"productCategories":[{"categoryName":"green"},{"categoryName":"white"},{"categoryName":"black"},{"categoryName":"herbal"},{"categoryName":"rooibos"},{"categoryName":"priceRange"},{"categoryName":"organic"},{"categoryName":"conventional"}]},{"baskets":[{"customerId":1,"products":[{"productId":1},{"productId":2}]},{"customerId":3,"products":[{"productId":3},{"productId":3},{"productId":3},{"productId":3}]},{"customerId":4,"products":[]},{"customerId":5,"products":[]},{"customerId":6,"products":[]},{"customerId":7,"products":[]},{"customerId":8,"products":[]},{"customerId":1649320299367,"products":[]},{"customerId":1649320326340,"products":[]},{"customerId":1649320327321,"products":[]},{"customerId":1649320327754,"products":[]},{"customerId":1649320466386,"products":[]},{"customerId":1649321750825,"products":[{"productId":3}]},{"customerId":1649322211168,"products":[{"productId":3},{"productId":3}]}]}]
+[
+    {"customers":[{"customerId":1,"customerName":"Sofie Nielsen","customerEmail":"soni@itu.dk"},{"customerId":2,"customerName":"Katrine Christensen","customerEmail":"katch@itu.dk"},
+        {"customerId":3,"customerName":"Christina Nissen","customerEmail":"chfn@itu.dk"},
+        {"customerId":4,"customerName":"Elisabeth Fredrich","customerEmail":"lfre@itu.dk"},{"customerId":5,"customerName":"Merle Schön","customerEmail":"mers@itu.dk"}]},
+    
+    {"products":[{"productId":1,"productName":"Sencha tea","categories":["green","conventional","30-50 DKK"],"price":"32 dkk","image":"/img/greenteas/sencha.jpg","description":"Sencha is a mild and soft green tea from China. It is often used in various green tea blends because it is mild and can therefore easily be combined with various ingredients such as fruits, berries and herbs."},{"productId":2,"productName":"Organic Matcha Tea","categories":["green","organic","30-50 DKK"],"price":"35 dkk","image":"/img/greenteas/matcha.png","description":"Matcha is a fine, green tea powder and is used for the traditional Japanese tea ceremony. Matcha is made from the finest top leaves of the plant and is rich on A-, E- and C vitamins, minerals and polyphenols. It is said that Matcha is even healthier than other teas because the whole tea leaves are used."},
+    
+    {"productId":3,"productName":"Organic Licorice tea",
+        "categories":["Herbal Tea","Organic","30-50 DKK"]
+        ,"price":"39 dkk","image":"/img/herbaltea/licorice.jpg","description":"This tea is a very tasty, pure herbal tea composed of lemon grass, peppermint, liquorice roots and apple pieces. It can be drunk both hot and cold and is excellent used as icetea on a hot summerday."}]},
+
+{"productCategories":
+    [{"categoryName":"Green Tea",
+        "subcategories": [
+            {"categoryName":"Price", "values": [{"price": "30-50 DKK"}]},
+            {"categoryName":"Organic"},
+            {"categoryName":"Conventional"}
+        ]
+    },
+    {"categoryName":"White Tea",
+        "subcategories": [
+            {"categoryName":"Price", "values": [{"price": "10-29 DKK"},{"price": "30-50 DKK"}]},
+            {"categoryName":"Organic"},
+            {"categoryName":"Conventional"}
+        ]},
+    {"categoryName":"Black Tea",
+        "subcategories": [
+            {"categoryName":"Price", "values": [{"price": "10-29 DKK"},{"price": "30-49 DKK"},{"price": "50-69 DKK"}]},
+            {"categoryName":"Organic"},
+            {"categoryName":"Conventional"}
+        ]},
+    {"categoryName":"Herbal Tea",
+        "subcategories": [
+            {"categoryName":"Price", "values": [{"price": "10-29 DKK"},{"price": "30-49 DKK"}]},
+            {"categoryName":"Organic"},
+            {"categoryName":"Conventional"}
+        ]},
+    {"categoryName":"Rooibos Tea", 
+        "subcategories": [
+            {"categoryName":"Price", "values": [{"price": "30-49 DKK"}]},
+            {"categoryName":"Organic"},
+            {"categoryName":"Conventional"}
+        ]},
+    {"categoryName":"All Teas", 
+        "subcategories": [
+            {"categoryName":"Price", "values": [{"price": "10-29 DKK"},{"price": "30-49 DKK"},{"price": "50-69 DKK"}]},
+            {"categoryName":"Organic"},
+            {"categoryName":"Conventional"}
+        ]}]},
+
+
+{"baskets":[]}]

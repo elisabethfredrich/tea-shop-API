@@ -97,7 +97,7 @@ export async function getProductByID(productId) {
   }
 
   // Get basket by id for a specific customer 
-  export async function getBasket(customerId) {
+  export async function getBasket(customerId) {   //should this be renamed to getBasketByCustomer?
     let customerBasketArray = await getAllBaskets();
     let index = findCustomerBasket(customerBasketArray, customerId);
     if (index === -1)
@@ -138,15 +138,15 @@ export async function addBasketForCustomer(basket) {
   }
 
   //if customer has no id (because not logged in), an id gets assigned which is current time stamp
-  export async function addBasketForCustomer2(basket) {
-    let customerBasketArray = await getAllBaskets(); 
-    if (basket.customerId === "")
-        basket.customerId = Date.now();
-    if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
-      throw new Error(`Customer with Id:${basket.customerId} already has a basket`);
-    else  customerBasketArray.push(basket);
-    await saveBasketForCustomers(customerBasketArray);
-    }
+  // export async function addBasketForCustomer2(basket) {
+  //   let customerBasketArray = await getAllBaskets(); 
+  //   if (basket.customerId === "")
+  //       basket.customerId = Date.now();
+  //   if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
+  //     throw new Error(`Customer with Id:${basket.customerId} already has a basket`);
+  //   else  customerBasketArray.push(basket);
+  //   await saveBasketForCustomers(customerBasketArray);
+  //   }
 
 
   // adds a product to a specific customer's basket 
@@ -154,6 +154,7 @@ export async function addBasketForCustomer(basket) {
     let customerBasketArray = await getAllBaskets();
     let productArray;
     let index = findCustomerBasket(customerBasketArray, customerId);
+    await getProductByID(newProduct.productId);
     if (index === -1)
       throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
     else productArray = customerBasketArray[index].products;
@@ -162,19 +163,19 @@ export async function addBasketForCustomer(basket) {
   }
 
   // creates a basket if a non-registered customer doesn't have a basket yet (id = 0) and adds a product to a specific customer's basket
-  export async function createProductInBasketForCustomer2 (customerId, newProduct){
-    let customerBasketArray = await getAllBaskets();
-    let productArray;
-    if (customerId === 0){
-      let basket = {customerId: Date.now(), products: [newProduct]};
-      customerBasketArray.push(basket);
-    }
-    else {
-        let index = findCustomerBasket(customerBasketArray, customerId);
-        productArray = customerBasketArray[index].products;
-        productArray.push(newProduct);}
-    await saveBasketForCustomers(customerBasketArray);
-  }
+  // export async function createProductInBasketForCustomer2 (customerId, newProduct){
+  //   let customerBasketArray = await getAllBaskets();
+  //   let productArray;
+  //   if (customerId === 0){
+  //     let basket = {customerId: Date.now(), products: [newProduct]};    //how does the Date.now() work? Will only one customer per day be able to not log in?
+  //     customerBasketArray.push(basket);
+  //   }
+  //   else {
+  //       let index = findCustomerBasket(customerBasketArray, customerId);
+  //       productArray = customerBasketArray[index].products;
+  //       productArray.push(newProduct);}
+  //   await saveBasketForCustomers(customerBasketArray);
+  // }
 
     // Get all product information of items in basket of specific customer
     export async function getBasketAllInfo(customerId) {
