@@ -27,7 +27,11 @@ GET http://localhost:3000/productCategories HTTP/1.1
 ###
 
 //get all products from a specific category
-GET http://localhost:3000/products/categories/green HTTP/1.1
+GET http://localhost:3000/products/productCategories/green HTTP/1.1
+###
+
+//get all products from a specific category
+GET http://localhost:3000/products/productCategories/conventional HTTP/1.1
 ###
 
 // create basket for a specific user 
@@ -39,7 +43,7 @@ content-type: application/json
 ###
 
 // add a specific product in a specific customers basket
-POST http://localhost:3000/baskets/4/products HTTP/1.1
+POST http://localhost:3000/baskets/6/products HTTP/1.1
 content-type: application/json
 
 {"productId": 1}
@@ -53,9 +57,9 @@ content-type: application/json
 ###
 
 // get content of basket for a specfic user
-GET http://localhost:3000/baskets/4 HTTP/1.1
+GET http://localhost:3000/baskets/6 HTTP/1.1
 
 ###
 // delete specific product in a specific customer basket 
-DELETE http://localhost:3000/baskets/4/products/3 HTTP/1.1
+DELETE http://localhost:3000/baskets/6/products/1 HTTP/1.1
 ###

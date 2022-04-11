@@ -92,7 +92,7 @@ export async function postBasketForCustomer(req, res) {
 //POST
 export async function postProductInBasketForCustomer(req, res) {
   try {
-    let customerId = parseInt(req.params.id)
+    let customerId = parseInt(req.params.customerId)
     let newProduct = req.body;
     await model.createProductInBasketForCustomer(customerId, newProduct);
     res.end()
@@ -105,8 +105,8 @@ export async function postProductInBasketForCustomer(req, res) {
 //GET
  export async function getBasketForCustomer (req, res) {
   try {
-    let id = parseInt(req.params.id)
-    let basket = await model.getBasketAllInfo(id);
+    let customerId = parseInt(req.params.customerId)
+    let basket = await model.getBasketAllInfo(customerId);
     res.json(basket);
   } catch (error) {
     // res.statusMessage=

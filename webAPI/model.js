@@ -22,6 +22,15 @@ export async function getAllCustomers() {
     return data[0].customers;
   }
 
+async function getAllCustomerIds(){
+  let customers = await getAllCustomers();
+  let ids = [];
+  customers.forEach(customer => {
+    ids.push(customer.customerId);
+  });
+  return ids;
+}
+
   export async function getAllProducts() {
     let data = await getAll();
     return data[1].products;
@@ -130,8 +139,8 @@ export async function addCustomer(newCustomer) {
     // create a new basket for a specific customer ID 
 export async function addBasketForCustomer(basket) {
   let customerBasketArray = await getAllBaskets(); 
-  let customer = await getAllCustomers();
-  if(!customer.includes(basket.customerId))
+  let customerIds = await getAllCustomerIds();
+  if(!customerIds.includes(basket.customerId))
     throw new Error(`Customer with Id:${basket.customerId} does not exist`);
   if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
   throw new Error(`Customer with Id:${basket.customerId} already has a basket`);

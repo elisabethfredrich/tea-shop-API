@@ -13,10 +13,10 @@ router.get("/customers/:id", getCustomer);
 router.get("/products/", getAllProducts);
 router.get("/products/:id", getProduct);
 router.get("/productCategories", getProductCategories); 
-router.get("/products/categories/:category", getAllProductsByCategory);
+router.get("/products/productCategories/:category", getAllProductsByCategory);
 
 router.post("/baskets", postBasketForCustomer);
-router.post("/baskets/:id/products", postProductInBasketForCustomer);
+router.post("/baskets/:customerId/products", postProductInBasketForCustomer);
 router.delete("/baskets/:customerId/products/:productId", deleteProductInBasketForCustomer);
-router.get("/baskets/:id", getBasketForCustomer)
+router.get("/baskets/:customerId", getBasketForCustomer)
 
