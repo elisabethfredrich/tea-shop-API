@@ -10,7 +10,7 @@ content-type: application/json
 ###
 
 // get customer by id
-GET http://localhost:3000/customers/1 HTTP/1.1
+GET http://localhost:3000/customers/6 HTTP/1.1
 
 ###
 
@@ -57,7 +57,7 @@ content-type: application/json
 ###
 
 // get content of basket for a specfic user
-GET http://localhost:3000/baskets/6 HTTP/1.1
+GET http://localhost:3000/baskets/6/products HTTP/1.1
 
 ###
 // delete specific product in a specific customer basket 
