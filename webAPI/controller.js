@@ -17,8 +17,8 @@ export async function postCustomer(req, res) {
 //GET
   export async function getCustomer (req, res) {
     try {
-      let id = parseInt(req.params.id)
-      let customer = await model.getCustomerByID(id);
+      let customerId = parseInt(req.params.customerId)
+      let customer = await model.getCustomerByID(customerId);
       res.json(customer);
     } catch (error) {
       // res.statusMessage=
@@ -41,8 +41,8 @@ export async function getAllProducts(req, res) {
 //GET
   export async function getProduct (req, res) {
     try {
-      let id = parseInt(req.params.id)
-      let product = await model.getProductByID(id);
+      let productId = parseInt(req.params.productId)
+      let product = await model.getProductByID(productId);
       res.json(product);
     } catch (error) {
       // res.statusMessage=
