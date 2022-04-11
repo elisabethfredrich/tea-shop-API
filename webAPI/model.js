@@ -130,6 +130,9 @@ export async function addCustomer(newCustomer) {
     // create a new basket for a specific customer ID 
 export async function addBasketForCustomer(basket) {
   let customerBasketArray = await getAllBaskets(); 
+  let customer = await getAllCustomers();
+  if(!customer.includes(basket.customerId))
+    throw new Error(`Customer with Id:${basket.customerId} does not exist`);
   if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
   throw new Error(`Customer with Id:${basket.customerId} already has a basket`);
     // Should the basket array only contain the customerID or store all details about the customer? 
