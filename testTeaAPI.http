@@ -48,12 +48,6 @@ content-type: application/json
 
 {"productId": 1}
 
-// add a specific product in a specific customers basket (for unregistered customer)
-//POST http://localhost:3000/baskets/0/products HTTP/1.1
-//content-type: application/json
-
-//{"productId": 3}
-
 ###
 
 // get content of basket for a specfic user
@@ -62,4 +56,5 @@ GET http://localhost:3000/baskets/6/products HTTP/1.1
 ###
 // delete specific product in a specific customer basket 
 DELETE http://localhost:3000/baskets/6/products/1 HTTP/1.1
+
 ###
