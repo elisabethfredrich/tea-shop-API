@@ -7,6 +7,13 @@ export const router = express.Router();
 // middleware specific to this route
 router.use(express.json())
 
+
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 // route handlers
 router.post("/customers", postCustomer);
 router.get("/customers/:customerId", getCustomer);
