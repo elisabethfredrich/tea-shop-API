@@ -1,15 +1,18 @@
 import express from "express";
+import cors from "cors";
 
 import {router} from "./webAPI/route.js";
 //import {productsRouter} from "./products/products.route.js";
 const app = express();
-const PORT = 3000;
+const PORT = 9000;
 
 // This is a built-in middleware function in Express. It parses incoming requests with JSON payloads.
 app.use(express.json());
 
 // paths handled by router
 app.use(router)
+
+app.use(cors());
 
 
 app.get("/", (req, res) => res.send("Server 3: Hello World!"));

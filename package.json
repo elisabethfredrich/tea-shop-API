@@ -15,6 +15,7 @@
   "author": "Christina Frederikke Nissen, Katrine Christensen, Lara Elisabeth Fredrich, Merle Schön, Sofie Kramshøi Nielsen",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3"
   }
 }
