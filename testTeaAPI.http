@@ -31,7 +31,7 @@ GET http://localhost:3000/products/productCategories/green HTTP/1.1
 ###
 
 //get all products from a specific category
-GET http://localhost:3000/products/productCategories/conventional HTTP/1.1
+GET http://localhost:3000/products/conventional HTTP/1.1
 ###
 
 // create basket for a specific user 

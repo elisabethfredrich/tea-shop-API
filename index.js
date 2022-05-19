@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
 
-import {router} from "./webAPI/route.js";
-//import {productsRouter} from "./products/products.route.js";
+import {customersRouter} from "./webAPI/customers/customers.route.js";
+import {productsRouter} from "./webAPI/products/products.route.js";
+import {productCategoriesRouter} from "./webAPI/productCategories/productCategories.route.js";
+import {basketsRouter} from "./webAPI/baskets/baskets.route.js";
+
 const app = express();
 const PORT = 9000;
 
@@ -10,7 +13,10 @@ const PORT = 9000;
 app.use(express.json());
 
 // paths handled by router
-app.use(router)
+app.use(customersRouter)
+app.use(productsRouter)
+app.use(productCategoriesRouter)
+app.use(basketsRouter)
 
 app.use(cors());
 
