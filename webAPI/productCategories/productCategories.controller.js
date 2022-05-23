@@ -1,4 +1,4 @@
-import * as productCategoriesModel from "./productCategories.model.js"
+import * as productCategoriesModel from "./productCategories.model.js";
 
 //GET
 export async function getProductCategories (req, res) {

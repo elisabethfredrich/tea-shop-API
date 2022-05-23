@@ -1,5 +1,5 @@
-import express from 'express'
-import {postCustomer, getCustomer} from './customers.controller.js'
+import express from 'express';
+import {postCustomer, getCustomer} from './customers.controller.js';
 
 export const customersRouter = express.Router();
 

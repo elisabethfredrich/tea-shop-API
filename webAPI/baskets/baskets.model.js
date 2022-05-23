@@ -1,6 +1,6 @@
 import * as fs from "fs/promises";
 import * as productsModel from "../products/products.model.js";
-const DATA_FILE = "./webAPI/data.json";
+const DATA_FILE = "../data.json";
 
 
 

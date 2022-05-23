@@ -1,4 +1,4 @@
-import * as productsModel from "../products/products.model.js"
+import * as productsModel from "../products/products.model.js";
 
 // get the different product categories (type, price range, organic)
 export async function getAllProductCategories() {

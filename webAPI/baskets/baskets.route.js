@@ -1,5 +1,5 @@
-import express from 'express'
-import {postBasketForCustomer, postProductInBasketForCustomer, getBasketForCustomer, deleteProductInBasketForCustomer} from './baskets.controller.js'
+import express from 'express';
+import {postBasketForCustomer, postProductInBasketForCustomer, getBasketForCustomer, deleteProductInBasketForCustomer} from './baskets.controller.js';
 
 export const basketsRouter = express.Router();
 

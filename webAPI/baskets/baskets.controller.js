@@ -1,6 +1,5 @@
 import * as basketsModel from "./baskets.model.js";
 
-
 //POST
 export async function postBasketForCustomer(req, res) {
     try {

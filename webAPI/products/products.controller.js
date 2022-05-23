@@ -1,4 +1,4 @@
-import * as productsModel from "./products.model.js"
+import * as productsModel from "./products.model.js";
 
 //GET
 export async function getAllProducts(req, res) {

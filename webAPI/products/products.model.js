@@ -1,5 +1,5 @@
 import * as fs from "fs/promises";
-const DATA_FILE = "./webAPI/data.json";
+const DATA_FILE = "../data.json";
 
 // return all data from file
 export async function getAll() {
