@@ -140,6 +140,14 @@ export async function addCustomer(newCustomer) {
       else return  productCategoryArray;
     }
 
+    // create a new basket SOFIES VERSION
+    export async function addBasketSofie(basket) {
+      let customerBasketArray = await getAllBaskets(); 
+      //let customerIds = await getAllCustomerIds();
+      customerBasketArray.push(basket);
+      await saveBasketForCustomers(customerBasketArray);
+      }
+
     // create a new basket for a specific customer ID 
 export async function addBasketForCustomer(basket) {
   let customerBasketArray = await getAllBaskets(); 

@@ -76,6 +76,18 @@ export async function getAllProducts(req, res) {
 
 
 // basket calls
+
+//POST
+export async function postBasketSofie(req, res) {
+  try {
+    let newBasket = req.body;
+    await model.addBasketSofie(newBasket);
+    res.end()
+  } catch (error) {
+    // res.statusMessage=
+    res.status(400).send(error.message);
+  }
+}
 //POST
 export async function postBasketForCustomer(req, res) {
   try {
