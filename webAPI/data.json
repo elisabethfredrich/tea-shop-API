@@ -120,4 +120,9 @@
         ]}]},
 
 
-{"baskets":[]}]
+{"baskets":[
+    {"userId":"1000","products":[{"productId":3}]}
+
+
+
+]}]
