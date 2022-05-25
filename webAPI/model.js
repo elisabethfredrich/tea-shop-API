@@ -75,6 +75,12 @@ function findCustomer(customerArray, Id) {
   );
 }
 
+function findCustomerByEmail(customerArray, email) {
+  return customerArray.findIndex(
+    (currCustomer) => currCustomer.customerEmail === email
+  );
+}
+
 function findProduct(productArray, Id) {
     return productArray.findIndex(
       (currProduct) => currProduct.productId === Id
@@ -122,10 +128,14 @@ export async function getProductByID(productId) {
 //functions called inside controller functions
 export async function addCustomer(newCustomer) {
     let customerArray = await getAllCustomers();
-    if (findCustomer(customerArray, newCustomer.customerId) !== -1 )
+    if (findCustomer(customerArray, newCustomer.customerId) !== -1)
     throw new Error(
         `Customer with Id:${newCustomer.customerId} already exists`
         );
+    if(findCustomerByEmail(customerArray, newCustomer.customerEmail) !== -1)
+    throw new Error(
+      `Customer with email:${newCustomer.customerEmail} already exists`
+      );
         customerArray.push(newCustomer);
         await saveCustomers(customerArray);
     }
