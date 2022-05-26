@@ -116,13 +116,7 @@ export async function getCustomerByID(customerId) {
   else return customerArray[index];
 }
 
-export async function getCustomerByEmail(customerEmail) {
-  let customerArray = await getAllCustomers();
-  let index = findCustomerByEmail(customerArray, customerEmail);
-  if (index === -1)
-    throw new Error(`Customer with email:${customerEmail} doesn't exist`);
-  else return customerArray[index];
-}
+
 
 export async function getProductByID(productId) {
     let productArray = await getAllProducts();
@@ -204,14 +198,6 @@ export async function addBasketForCustomer(basket) {
     await saveBasketForCustomers(customerBasketArray);}
   }
 
-  async function getAllCustomerEmails(){
-    let customers = await getAllCustomers();
-    let emails = [];
-    customers.forEach(customer => {
-      emails.push(customer.customerEmail);
-    })
-    return emails;
-  }
 
   export async function getCustomerByEmail(customerEmail) {
     let customerArray = await getAllCustomers();
