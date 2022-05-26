@@ -1,6 +1,6 @@
 // index.js
 import express from 'express'
-import {postBasketForCustomer, postCustomer, getCustomer, getAllProducts, getProduct, getProductCategories, getAllProductsByCategory, postProductInBasketForCustomer, getBasketForCustomer, deleteProductInBasketForCustomer} from './controller.js'
+import {postProductToBasket, postCustomer, getCustomer, getCustomerEmail, getAllProducts, getProduct, getProductCategories, getAllProductsByCategory, postBasketForCustomer, postProductInBasketForCustomer, getBasketForCustomer, deleteProductInBasketForCustomer} from './controller.js'
 
 export const router = express.Router();
 
@@ -17,6 +17,7 @@ router.use(function(req, res, next) {
 
 // route handlers
 router.post("/customers", postCustomer);
+router.get("/customers/:customerEmail", getCustomerEmail);
 router.get("/customers/:customerId", getCustomer);
 router.get("/products/", getAllProducts);
 router.get("/products/:productId", getProduct);
