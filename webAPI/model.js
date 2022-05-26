@@ -140,14 +140,6 @@ export async function addCustomer(newCustomer) {
       else return  productCategoryArray;
     }
 
-    // create a new basket SOFIES VERSION
-    export async function addBasketSofie(basket) {
-      let customerBasketArray = await getAllBaskets(); 
-      //let customerIds = await getAllCustomerIds();
-      customerBasketArray.push(basket);
-      await saveBasketForCustomers(customerBasketArray);
-      }
-
     // create a new basket for a specific customer ID 
 export async function addBasketForCustomer(basket) {
   let customerBasketArray = await getAllBaskets(); 
@@ -166,17 +158,21 @@ export async function addBasketForCustomer(basket) {
     let customerBasketArray = await getAllBaskets();
     let productArray;
     let index = findCustomerBasket(customerBasketArray, customerId);
-    await getProductByID(newProduct.productId);
+   // await getProductByID(newProduct.productId);
     if (index === -1)
       throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
-    else {productArray = customerBasketArray[index].products;
+
+    else {
+      productArray = customerBasketArray[index].products;
     //check if product already exists
-    let productIndex = findProduct(productArray, newProduct.productId);
+
+      let productIndex = findProduct(productArray, newProduct.productId);
     if(productIndex === -1){
     productArray.push(newProduct);}
     else{
       customerBasketArray[index].products[productIndex].amount += 1; 
     }
+
     await saveBasketForCustomers(customerBasketArray);}
   }
 

@@ -43,10 +43,10 @@ content-type: application/json
 ###
 
 // add a specific product in a specific customers basket
-POST http://localhost:3000/baskets/6/products HTTP/1.1
+POST http://localhost:9000/baskets/1000/products HTTP/1.1
 content-type: application/json
 
-{"productId": 1}
+{"productId": 3, "amount":1}
 
 ###
 
