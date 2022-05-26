@@ -169,9 +169,15 @@ export async function addBasketForCustomer(basket) {
     await getProductByID(newProduct.productId);
     if (index === -1)
       throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
-    else productArray = customerBasketArray[index].products;
-    productArray.push(newProduct);
-    await saveBasketForCustomers(customerBasketArray);
+    else {productArray = customerBasketArray[index].products;
+    //check if product already exists
+    let productIndex = findProduct(productArray, newProduct.productId);
+    if(productIndex === -1){
+    productArray.push(newProduct);}
+    else{
+      customerBasketArray[index].products[productIndex].amount += 1; 
+    }
+    await saveBasketForCustomers(customerBasketArray);}
   }
 
     // Get all product information of items in basket of specific customer
