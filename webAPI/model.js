@@ -143,8 +143,7 @@ export async function addCustomer(newCustomer) {
     throw new Error(
         `Customer with Id:${newCustomer.customerId} already exists`
         );
-    if (!(getAllCustomerEmails.contains(newCustomer.customerEmail)))
- /*    if(findCustomerByEmail(customerArray, newCustomer.customerEmail) !== -1) */
+    if(findCustomerByEmail(customerArray, newCustomer.customerEmail) !== -1) 
     throw new Error(
       `Customer with email:${newCustomer.customerEmail} already exists`
       );
