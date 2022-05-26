@@ -18,7 +18,7 @@ router.use(function(req, res, next) {
 
 // route handlers
 router.post("/customers", postCustomer);
-router.get("/customers/:customerEmail", getCustomerEmail);
+router.get("/customers/email/:customerEmail", getCustomerEmail);
 router.get("/customers/:customerId", getCustomer);
 router.get("/products/", getAllProducts);
 router.get("/products/:productId", getProduct);
