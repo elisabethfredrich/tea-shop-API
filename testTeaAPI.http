@@ -35,26 +35,26 @@ GET http://localhost:3000/products/productCategories/conventional HTTP/1.1
 ###
 
 // create basket for a specific user 
-POST http://localhost:3000/baskets HTTP/1.1
+POST http://localhost:9000/baskets HTTP/1.1
 content-type: application/json
 
-{"customerId": 6, "products": []}
+{"customerId": 746, "products": []}
 
 ###
 
 // add a specific product in a specific customers basket
-POST http://localhost:3000/baskets/6/products HTTP/1.1
+POST http://localhost:9000/baskets/1000/products HTTP/1.1
 content-type: application/json
 
-{"productId": 1}
+{"productId": 4}
 
 ###
 
 // get content of basket for a specfic user
-GET http://localhost:3000/baskets/6/products HTTP/1.1
+GET http://localhost:9000/baskets/746/products HTTP/1.1
 
 ###
 // delete specific product in a specific customer basket 
-DELETE http://localhost:3000/baskets/6/products/1 HTTP/1.1
+DELETE http://localhost:9000/baskets/765/products/12 HTTP/1.1
 
 ###
