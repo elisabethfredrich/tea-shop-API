@@ -168,14 +168,6 @@ export async function addCustomer(newCustomer) {
       else return  productCategoryArray;
     }
 
-    // create a new basket SOFIES VERSION
-    export async function addBasketSofie(basket) {
-      let customerBasketArray = await getAllBaskets(); 
-      //let customerIds = await getAllCustomerIds();
-      customerBasketArray.push(basket);
-      await saveBasketForCustomers(customerBasketArray);
-      }
-
     // create a new basket for a specific customer ID 
 export async function addBasketForCustomer(basket) {
   let customerBasketArray = await getAllBaskets(); 
@@ -194,12 +186,22 @@ export async function addBasketForCustomer(basket) {
     let customerBasketArray = await getAllBaskets();
     let productArray;
     let index = findCustomerBasket(customerBasketArray, customerId);
-    await getProductByID(newProduct.productId);
+   // await getProductByID(newProduct.productId);
     if (index === -1)
       throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
-    else productArray = customerBasketArray[index].products;
-    productArray.push(newProduct);
-    await saveBasketForCustomers(customerBasketArray);
+
+    else {
+      productArray = customerBasketArray[index].products;
+    //check if product already exists
+
+      let productIndex = findProduct(productArray, newProduct.productId);
+    if(productIndex === -1){
+    productArray.push({productId:newProduct.productId,amount:1});}
+    else{
+      customerBasketArray[index].products[productIndex].amount += 1; 
+    }
+
+    await saveBasketForCustomers(customerBasketArray);}
   }
 
     // Get all product information of items in basket of specific customer
@@ -207,9 +209,10 @@ export async function addBasketForCustomer(basket) {
       let basket = await getBasket(customerId);
       for(let i = 0; i<basket.length; i++){
         let product = await getProductByID(basket[i].productId);
-        basket[i] = product};
+        let amount = basket[i].amount;
+        basket[i] = {product, amount};}
       return basket;
-    } 
+     }
 
 
    // Delete a specific item in a specific customers basket 
@@ -224,9 +227,14 @@ export async function addBasketForCustomer(basket) {
     let productIndex = findProduct(basket, productId);
     if (productIndex === -1)
     throw new Error(`Product with Id:${productId} is not in the customer's basket`);
-    else basket.splice(productIndex,1);
-    await saveBasketForCustomers(customerBasketArray);
 
+    else if (basket[productIndex].amount > 1){
+      customerBasketArray[basketIndex].products[productIndex].amount -= 1;
+
+    }
+    else {
+    basket.splice(productIndex,1);}
+    await saveBasketForCustomers(customerBasketArray);
+    
   }
 
-    
