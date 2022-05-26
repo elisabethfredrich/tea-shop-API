@@ -1,5 +1,5 @@
 [
-    {"customers":[{"customerId":1,"customerName":"Sofie Nielsen","customerEmail":"soni@itu.dk"},{"customerId":2,"customerName":"Katrine Christensen","customerEmail":"katch@itu.dk"},
+    {"customers":[{"customerId":1,"customerName":"Sofie Nielsen","customerEmail":"sonidk"},{"customerId":2,"customerName":"Katrine Christensen","customerEmail":"katch@itu.dk"},
         {"customerId":3,"customerName":"Christina Nissen","customerEmail":"chfn@itu.dk"},
         {"customerId":4,"customerName":"Elisabeth Fredrich","customerEmail":"lfre@itu.dk"},{"customerId":5,"customerName":"Merle Schön","customerEmail":"mers@itu.dk"}]},
     
