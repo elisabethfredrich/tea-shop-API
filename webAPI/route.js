@@ -2,6 +2,7 @@
 import express from 'express'
 import {getCustomerEmail, postBasketForCustomer, postCustomer, getCustomer, getAllProducts, getProduct, getProductCategories, getAllProductsByCategory, postProductInBasketForCustomer, getBasketForCustomer, deleteProductInBasketForCustomer} from './controller.js'
 
+
 export const router = express.Router();
 
 // middleware specific to this route

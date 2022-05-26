@@ -14,7 +14,10 @@ export async function postCustomer(req, res) {
     }
   }
   
-//GET
+
+
+
+  //GET
   export async function getCustomer (req, res) {
     try {
       let customerId = parseInt(req.params.customerId)
@@ -26,6 +29,16 @@ export async function postCustomer(req, res) {
     }
   }
 
+  //Get customer by email 
+  export async function getCustomerEmail (req, res) {
+    try {
+      let customerEmail = req.params.customerEmail
+      let customer = await model.getCustomerByEmail(customerEmail);
+      res.json(customer);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  }
 
 //product calls
 //GET
