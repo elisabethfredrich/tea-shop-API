@@ -129,6 +129,18 @@ export async function postProductInBasketForCustomer(req, res) {
   }
 } 
 
+  //Get customer by email 
+  export async function getCustomerEmail (req, res) {
+    try {
+      let customerEmail = req.params.customerEmail
+      let customer = await model.getCustomerByEmail(customerEmail);
+      res.json(customer);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  }
+
+
 //DELETE
 export async function deleteProductInBasketForCustomer (req, res) {
   try {

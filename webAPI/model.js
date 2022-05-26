@@ -204,6 +204,25 @@ export async function addBasketForCustomer(basket) {
     await saveBasketForCustomers(customerBasketArray);}
   }
 
+  async function getAllCustomerEmails(){
+    let customers = await getAllCustomers();
+    let emails = [];
+    customers.forEach(customer => {
+      emails.push(customer.customerEmail);
+    })
+    return emails;
+  }
+
+  export async function getCustomerByEmail(customerEmail) {
+    let customerArray = await getAllCustomers();
+    let index = findCustomerByEmail(customerArray, customerEmail);
+    if (index === -1)
+      throw new Error(`Customer with email:${customerEmail} doesn't exist`);
+    else return customerArray[index];
+  }
+  
+  
+
     // Get all product information of items in basket of specific customer
     export async function getBasketAllInfo(customerId) {
       let basket = await getBasket(customerId);
