@@ -168,7 +168,7 @@ export async function addBasketForCustomer(basket) {
 
       let productIndex = findProduct(productArray, newProduct.productId);
     if(productIndex === -1){
-    productArray.push(newProduct);}
+    productArray.push({productId:newProduct.productId,amount:1});}
     else{
       customerBasketArray[index].products[productIndex].amount += 1; 
     }
@@ -181,9 +181,10 @@ export async function addBasketForCustomer(basket) {
       let basket = await getBasket(customerId);
       for(let i = 0; i<basket.length; i++){
         let product = await getProductByID(basket[i].productId);
-        basket[i] = product};
+        let amount = basket[i].amount;
+        basket[i] = {product, amount};}
       return basket;
-    } 
+     }
 
 
    // Delete a specific item in a specific customers basket 
@@ -198,9 +199,14 @@ export async function addBasketForCustomer(basket) {
     let productIndex = findProduct(basket, productId);
     if (productIndex === -1)
     throw new Error(`Product with Id:${productId} is not in the customer's basket`);
-    else basket.splice(productIndex,1);
-    await saveBasketForCustomers(customerBasketArray);
 
+    else if (basket[productIndex].amount > 1){
+      customerBasketArray[basketIndex].products[productIndex].amount -= 1;
+
+    }
+    else {
+    basket.splice(productIndex,1);}
+    await saveBasketForCustomers(customerBasketArray);
+    
   }
 
-    
