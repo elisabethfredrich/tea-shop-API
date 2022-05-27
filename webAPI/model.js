@@ -169,7 +169,6 @@ export async function addBasketForCustomer(basket) {
     throw new Error(`Customer with Id:${basket.customerId} does not exist`);
   if (findCustomerBasket(customerBasketArray, basket.customerId) !== -1 )
   throw new Error(`Customer with Id:${basket.customerId} already has a basket`);
-    // Should the basket array only contain the customerID or store all details about the customer? 
       else customerBasketArray.push(basket);
       await saveBasketForCustomers(customerBasketArray);
   }
@@ -179,25 +178,23 @@ export async function addBasketForCustomer(basket) {
     let customerBasketArray = await getAllBaskets();
     let productArray;
     let index = findCustomerBasket(customerBasketArray, customerId);
-   // await getProductByID(newProduct.productId);
     if (index === -1)
       throw new Error(`Customer with ID:${customerId} doesn't have a basket`);
-
     else {
       productArray = customerBasketArray[index].products;
-    //check if product already exists
 
+
+    //check if product already exists
       let productIndex = findProduct(productArray, newProduct.productId);
     if(productIndex === -1){
     productArray.push({productId:newProduct.productId,amount:1});}
     else{
       customerBasketArray[index].products[productIndex].amount += 1; 
     }
-
     await saveBasketForCustomers(customerBasketArray);}
   }
 
-
+ // Get customer by email if it exists
   export async function getCustomerByEmail(customerEmail) {
     let customerArray = await getAllCustomers();
     let index = findCustomerByEmail(customerArray, customerEmail);
